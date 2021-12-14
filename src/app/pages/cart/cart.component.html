@@ -1,0 +1,146 @@
+<div class="container my-3">
+	<h1>Shopping Cart</h1>
+	<div class="row mt-5">
+        <div class="col-lg-8 col-sm-12">
+            <div 
+                class="card my-1"
+                *ngFor="let product of cartProducts; let i = index"
+            >
+                <div class="card-body">
+                    <div class="row p-4">
+                        <div class="col-4">
+                            <img 
+                                [src]="product?.Product?.image" 
+                                alt=""
+                                height="200px"
+                                width="250px"
+                            >
+                        </div>
+                        <div class="col-1"></div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <h4 class="card-title"> {{product?.Product?.name}} </h4>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="card">
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <button 
+                                                type="button" 
+                                                class="btn btn-default"
+                                                (click)="handleQuantityDecrement(i)"
+                                            >-</button>
+                                            <button 
+                                                type="button" 
+                                                class="btn btn-default"
+                                            > {{product?.quantity}} </button>
+                                            <button 
+                                                type="button" 
+                                                class="btn btn-default"
+                                                (click)="handleQuantityIncrement(i)"
+                                            >+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>Casual Shoes</p>
+                            <p class="mt-2">
+                                {{ product?.Product?.description }}
+                            </p>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <p>Size :  <b>10</b> </p>
+                                </div>
+                                <div class="col-lg-4">
+                                    <p>Price :  <b> {{product?.Product?.price}} </b> </p>
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <button 
+                                        (click)="handleDeleteProductFromCart(product?.id)"
+                                        class="btn btn-outline-danger" 
+                                        type="button"
+                                    >Remove Product</button>
+                                  </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-title mt-3">
+                    <h3 class="text-center forn-weight-bold"> Choose Shipping Address </h3>
+                    <hr>
+                </div>
+                <div class="card-body">
+                    <select name="" value="" class="form-control" [(ngModel)]="deliveryAddress">
+                        <option value="">Select Shipping Address</option>
+                        <option 
+                            *ngFor="let address of allAddress" 
+                            [value]="address?.id" 
+                        >
+                            {{address.houseNumber}},
+                            {{address.street}}, 
+                            {{address.City}},
+                            {{address.State}},
+                            {{address.Country}}
+                        </option>
+                    </select>
+                    <!-- <ul class="list-group list-group-numbered">
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                          <div class="ms-2 me-auto">
+                                <div class="fw-bold">All Product Price </div>
+                                Including all products
+                          </div>
+                          <span>250</span>
+                        </li>
+                    </ul> -->
+                    <div class="d-grid gap-2 mt-2">
+                        <button class="btn btn-primary" (click)="nagivateToAddress()"> Add a new address</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-title mt-3">
+                    <h3 class="text-center forn-weight-bold"> The total amount of </h3>
+                    <hr>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-numbered">
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                          <div class="ms-2 me-auto">
+                                <div class="fw-bold">All Product Price </div>
+                                Including all products
+                          </div>
+                          <span>{{productPrice}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">Shipping Fees</div>
+                                Including GST
+                            </div>
+                            <span>99</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">Grand Total</div>
+                                Including all products + Shipping
+                            </div>
+                            <span> {{totalPrice}} </span>
+                        </li>
+                    </ul>
+                    <div class="d-grid gap-2 mt-2">
+                        <button 
+                            class="btn btn-primary" 
+                            type="button"
+                            (click)="handlePlaceOrder()"
+                        >Procced to Checkout </button>
+                    </div>
+                    <!-- <button (click)="makePayment()">Pay</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

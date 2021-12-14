@@ -1,0 +1,85 @@
+<nav 
+    class="navbar navbar-expand-lg navbar-dark px-4" 
+    style="background-image: linear-gradient(to right, #9296C6  , #676ECF );"
+  >
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+          <img 
+            class="rounded-circle"
+            src="https://e7.pngegg.com/pngimages/129/130/png-clipart-shopping-cart-computer-icons-online-shopping-online-shop-angle-text.png" 
+            alt=""
+            height="50"
+            width="50"
+        >
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/products">Product</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link active" href="/about-us">About</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link active" href="/contact">Contact</a>
+          </li>
+
+          <li *ngIf="!isAuthenticated" class="nav-item btn btn-danger mx-5">
+            <a class="nav-link active" href="/signin">SignIn</a>
+          </li>
+        </ul>
+        <div *ngIf="isAuthenticated" class="d-flex" style="width: 13%; height:44px">
+            <a href="/cart" type="button" class="btn btn-primary position-relative mx-2">
+                <i class="fa fa-shopping-cart"></i>
+                <span 
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  *ngIf="numberOfItemInCart > 0"
+                >
+                  {{numberOfItemInCart}}
+                </span>
+            </a>
+            <ul class="navbar-nav me-auto  mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img
+                            class="rounded-circle"
+                            src="https://images.unsplash.com/photo-1604426633861-11b2faead63c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=764&q=80"
+                            height="40px" width="40px"
+                        >
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                      <li><a class="dropdown-item" href="/wishlists">Wishlist</a></li>
+                      <li><a class="dropdown-item" href="/orders">Orders</a></li>
+                      <li><a class="dropdown-item" href="/address">Addresses</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li *ngIf="isAdmin">
+                        <a class="dropdown-item" href="/admin-dashboard">
+                          <div class="d-grid gap-2">
+                            <button class="btn btn-info" type="button">Admin Dashboard</button>
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+            </ul>
+
+            <button 
+              type="button" 
+              class="btn btn-danger position-relative mx-2"
+              (click)="logout()"
+            >
+                LogOut
+            </button>
+        </div>
+      </div>
+    </div>
+</nav>

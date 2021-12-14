@@ -1,0 +1,78 @@
+<div class="container my-5">
+    <div class="card">
+        <div class="card-title">
+            <h2 class="text-center mt-3">My Orders !!</h2>
+            <hr>
+        </div>
+        <div 
+            class="card-body p-3"
+            *ngIf="allOrders.length > 0"
+        >
+            <div 
+                class="card m-1"
+                *ngFor="let order of allOrders"
+            >
+                <div 
+                    class="card-body">
+                    <div class="row p-4">
+                        <div class="col-4">
+                            <img 
+                                [src]="order?.productImage" 
+                                alt=""
+                                height="200px"
+                                width="250px"
+                            >
+                        </div>
+                        <div class="col-1"></div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <h4 class="card-title"> {{order?.proructName}} </h4>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="card">
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <button type="button" class="btn btn-default">Quantity</button>
+                                            <button type="button" class="btn btn-default"> {{order?.productQuantity}}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>Delivery Date : <b>{{order?.productDeliveryDate | date}}</b> </p>
+                            <p class="mt-2">
+                                {{order?.productDescription}}
+                            </p>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <p>Size :  <b>10</b> </p>
+                                </div>
+                                <div class="col-lg-4">
+                                    <p>Price :  <b> {{order?.productPrice}} </b> </p>
+                                </div>
+                                <div class="col-lg-4">
+                                    <p>Total Price :  <b> {{order?.totalPrice}} </b> </p>
+                                </div>
+                            </div>
+                            <span class="badge rounded-pill bg-success"> {{order?.status}} </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div 
+            class="card m-3 p-3"
+            *ngIf="allOrders.length  ===  0"
+        >
+            <h3 class="text-center">
+                No Orders to Display
+            </h3>
+            <a 
+                href="/products"
+                class="d-grid gap-2 col-6 mx-auto my-5"
+            >
+                <button class="btn btn-primary" type="button">Buy Now</button>
+            </a>
+        </div>
+    </div>
+</div>

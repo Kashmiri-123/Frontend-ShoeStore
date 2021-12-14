@@ -1,0 +1,88 @@
+<section class="bg-dark">
+    <div class="container py-5">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col">
+                <div class="card card-registration my-4">
+                    <div class="row g-0">
+                        <div class="col-xl-6 d-none d-xl-block">
+                            <img
+                                src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-registration/img4.jpg"
+                                alt="Sample photo"
+                                class="img-fluid"
+                                style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;"
+                                height=300
+                            />
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="card-body p-md-5 text-black">
+                            <h3 class="mb-5 text-uppercase">Add Product Here</h3>
+            
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        <input 
+                                            type="text" 
+                                            class="form-control form-control-lg" 
+                                            [(ngModel)]="name"    
+                                        />
+                                        <label class="form-label">Product Name</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    <input 
+                                        type="text" 
+                                        class="form-control form-control-lg" 
+                                        [(ngModel)]="price"    
+                                    />
+                                    <label class="form-label">Price</label>
+                                </div>
+                                </div>
+                            </div>
+            
+                            <div class="form-outline mb-4">
+                                <textarea  
+                                    type="text" 
+                                    class="form-control form-control-lg" 
+                                    [(ngModel)]="description"    
+                                ></textarea>
+                                <label class="form-label">Descrption</label>
+                            </div>
+            
+                            <select class="form-control mb-4" [(ngModel)]="category">
+                                <option value="">Choose Category</option>
+                                <option value="ALL">All Categories</option>
+                                <option 
+                                    *ngFor="let cate of caregoryList" 
+                                    [value]="cate.id"
+                                >
+                                    {{cate.name}}
+                                </option>
+                            </select>
+            
+                            <div class="col-md-6 mb-4">
+                            <div class="form-outline">
+                                <input  
+                                    type="text" 
+                                    class="form-control form-control-lg" 
+                                    [(ngModel)]="image"    
+                                />
+                                <label class="form-label">Image</label> 
+                                <!-- <input class="form-control form-control-lg" id="formFileLg" type="file" /> -->
+                                <!-- <div class="small text-muted mt-2">Upload your CV/Resume or any other relevant file. Max file size 50 MB</div> -->
+                            </div>
+                            </div>
+            
+                            <div class="d-flex justify-content-end pt-3">
+                                <button type="button" class="btn btn-secondary btn-lg">Reset all</button>
+                                <button type="button" class="btn btn-primary btn-lg ms-2" (click)="handleAddProduct()">Submit form</button>
+                            </div>
+            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>

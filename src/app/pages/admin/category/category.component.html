@@ -1,0 +1,223 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-sm-12 my-2 left-col">
+            <div class="card mt-3">
+                <div class="card-title">
+                    <h3 class="text-center mt-2">ShoeStore</h3>
+                    <hr>
+                </div>
+                <div class="card-body">
+                    <div class="list-group">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <a href="/admin-dashboard" class ="btn btn-default">
+                                    <i class="fa fa-dashboard"></i>
+                                    &nbsp;Dashboard
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="/admin-users" class ="btn btn-default">
+                                    <i class="fa fa-users"></i>
+                                        &nbsp;Users
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="/admin-categories" class ="btn btn-default">
+                                    <i class="fa fa-list-alt"></i>
+                                        &nbsp;Category
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="/admin-products" class ="btn btn-default">
+                                    <i class="fas fa-shoe-prints"></i>
+                                        &nbsp;Products
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="/admin-orders" class ="btn btn-default">
+                                    <i class="fab fa-first-order"></i>
+                                        &nbsp;Orders
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9 col-sm-12">
+            <div class="container mt-5">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-6">
+                                <h3>Category</h3>
+                            </div>
+                            <div class="col-4"></div>
+                            <div class="col-2">
+                                <button
+                                    data-bs-toggle="modal" data-bs-target="#addCategory"
+                                    class="btn btn-primary text-white"
+                                >
+                                    <i class="fa fa-plus fa-lg"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Descrption</td>
+                                    <!-- <td>Number Of Products</td> -->
+                                    <td align="right">Action</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let category of caregoryList">
+                                    <td>{{ category.name }}</td>
+                                    <td>
+                                        {{category.description}}
+                                    </td>
+                                    <!-- <td align="center">
+                                        <span class="badge rounded-pill bg-success">100</span> 
+                                    </td> -->
+                                    <td align="right">
+                                        <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                            <button 
+                                                type="button" 
+                                                class="btn btn-outline-info"
+                                                data-bs-toggle="modal" data-bs-target="#updateCategory"
+                                                (click)="handleUpdateForm(category)"
+                                            >
+                                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-outline-danger" (click)="removeCategory(category.id)">
+                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Add category Model -->
+
+<div 
+    class="modal fade" 
+    id="addCategory" 
+    tabindex="-1" 
+    aria-labelledby="exampleModalLabel" 
+    aria-hidden="true"
+>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="card p-3">
+                <div class="mb-3">
+                    <p for="">Category Name</p>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        placeholder="Enter the category name"
+                        [(ngModel)] = "name"
+                        value="name"
+                    />
+                </div>
+
+                <div class="mb-3">
+                    <p for="">Category Name</p>
+                    <textarea
+                        type="text" 
+                        class="form-control" 
+                        placeholder="Enter the category name"
+                        [(ngModel)] = "description"
+                        value="description"
+                    ></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button 
+                type="button" 
+                class="btn btn-secondary" 
+                data-bs-dismiss="modal"
+            >Close</button>
+            <button 
+                type="button" 
+                class="btn btn-primary" 
+                (click)="addCategory()"
+            >Save changes</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<!-- Update Category Model -->
+<div 
+    class="modal fade" 
+    id="updateCategory" 
+    tabindex="-1" 
+    aria-labelledby="exampleModalLabel" 
+    aria-hidden="true"
+>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="card p-3">
+                <div class="mb-3">
+                    <p for="">Category Name</p>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        placeholder="Enter the category name"
+                        [(ngModel)] = "name"
+                        value="name"
+                    />
+                </div>
+
+                <div class="mb-3">
+                    <p for="">Category Name</p>
+                    <textarea
+                        type="text" 
+                        class="form-control" 
+                        placeholder="Enter the category name"
+                        [(ngModel)] = "description"
+                        value="description"
+                    ></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button 
+                type="button" 
+                class="btn btn-secondary" 
+                data-bs-dismiss="modal"
+            >Close</button>
+            <button 
+                type="submit" 
+                class="btn btn-primary"
+                (click)="updateCategory()"
+            >Save changes</button>
+        </div>
+      </div>
+    </div>
+</div>

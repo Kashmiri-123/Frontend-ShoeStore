@@ -1,0 +1,137 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-sm-12 my-2 left-col">
+            <div class="card mt-3">
+                <div class="card-title">
+                    <h3 class="text-center mt-2">ShoeStore</h3>
+                    <hr>
+                </div>
+                <div class="card-body">
+                    <div class="list-group">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <a href="/admin-dashboard" class ="btn btn-default">
+                                    <i class="fa fa-dashboard"></i>
+                                    &nbsp;Dashboard
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="/admin-users" class ="btn btn-default">
+                                    <i class="fa fa-users"></i>
+                                        &nbsp;Users
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="/admin-categories" class ="btn btn-default">
+                                    <i class="fa fa-list-alt"></i>
+                                        &nbsp;Category
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="/admin-products" class ="btn btn-default">
+                                    <i class="fas fa-shoe-prints"></i>
+                                        &nbsp;Products
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="/admin-orders" class ="btn btn-default">
+                                    <i class="fab fa-first-order"></i>
+                                        &nbsp;Orders
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9 col-sm-12">
+            <div class="container mt-5">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Orders</h3>
+                        <hr>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <td>Image</td>
+                                    <td>Product</td>
+                                    <td>Customer</td>
+                                    <td>Price</td>
+                                    <td>Quantity</td>
+                                    <td>Status</td>
+                                    <td align="right">Action</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let order of orderList">
+                                    <td>
+                                        <img 
+                                            [src]="order?.productImage" 
+                                            alt="Image"
+                                            height="50px"
+                                            width="70px"
+                                        >
+                                    </td>
+                                    <td>{{order?.proructName}}</td>
+                                    <td>
+                                        {{order?.customer}}
+                                    </td>
+                                    <td>
+                                        {{order?.totalPrice | currency:"INR":"symbol"}}
+                                    </td>
+                                    <td align="center">
+                                        {{order?.productQuantity}}
+                                    </td>
+                                    <td>
+                                        <span class="badge rounded-pill bg-success">{{order.status}}</span>
+                                    </td>
+                                    <td align="right">
+                                        <button 
+                                            class="btn btn-outline-info"
+                                            data-bs-toggle="modal" data-bs-target="#updateStatusModel"
+                                            (click)="loadUpdateForm(order.id)"
+                                        >
+                                            <i class="fa fa-pencil"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="updateStatusModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <select class="form-control" [(ngModel)]="orderStatus">
+                <option value="">Update Status </option>
+                <option  value="accepted"> Accepted </option>
+                <option  value="shipped"> Shipped </option>
+                <option  value="delivered"> Delivered </option>
+                <option  value="cancelled"> Cancelled </option>
+            </select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button 
+                type="button" 
+                class="btn btn-primary"
+                (click)="handleUpdateStatus()"
+            >Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

@@ -1,0 +1,168 @@
+<div class="container">
+    <h1 class = "lg-title">Our Products</h1>
+    <h5 class="text-muted text-center">get your footweaer with a great discount !!</h5>
+    <div class="card">
+        <div class="row mt-3 mx-3">
+            <div class="col-lg-4 col-sm-12">
+                <select class="form-control" [(ngModel)]="priceSort">
+                    <option value="">Sort the products</option>
+                    <option value="DEFAULT">Popularity</option>
+                    <option value="INCREASING">Low to High</option>
+                    <option value="DECREASING">High to Low</option>
+                </select>
+            </div>
+            <div class="col-lg-4 col-sm-12">
+                <select class="form-control" [(ngModel)]="category">
+                    <option value="">Select Category</option>
+                    <option value="ALL">All Categories</option>
+                    <option 
+                        *ngFor="let category of categoryList"
+                        [value]="category.id"
+                    > {{category.name}}</option>
+                </select>
+            </div>
+            <div class="col-lg-4 col-sm-12">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="d-grid gap-2">
+                            <button 
+                                class="btn btn-info" 
+                                type="button"
+                                (click)="handleFilter()"
+                            >
+                                <span class="text-white">
+                                    <b>Apply Filter</b>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="d-grid gap-2">
+                            <a 
+                                class="btn btn-secondary" 
+                                type="button"
+                                href="/products"
+                            >
+                                <span class="text-white">
+                                    <b>Clear Filter</b>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Non Filtered Products -->
+        <div class = "products">
+            <div class = "container">
+                <div class = "product-items">
+                    <!-- TODO: Looping Start -->
+                    <div 
+                        class="card m-1"
+                        *ngFor="let product of productsList"
+                        style="cursor: pointer"
+                    >
+                        <div>
+                            <div class = "product-content">
+                                <img 
+                                    [src]="product.image" 
+                                    alt = "product image"
+                                    height="200px"
+                                    width="200px"
+                                    class="fluid-img mb-2"
+                                >
+                                <div class="row mx-3">
+                                    <div class="col-lg-6">
+                                        <button 
+                                            (click)="handleAddToCart(product.id)"
+                                            class = "btn btn-info"
+                                        >
+                                            <i class="fa fa-shopping-cart"></i>
+                                            Cart
+                                        </button>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <button class = "btn btn-primary">
+                                            <i class="fas fa-heart"></i>
+                                            Wishlist
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div 
+                                (click) = "handleNavigation(product.id)"
+                                class = "product-info" style="margin-top:-10px"
+                            >
+                                <div class = "product-info-top">
+                                    <h2 class = "product-name"> {{product.name}}</h2>
+                                </div>
+                                <small *ngIf="product.description.length > 30">
+                                    {{product.description.slice(0,30)}} ....
+                                </small>
+                                <small *ngIf="product.description.length < 30">
+                                    {{product.description}}
+                                </small>
+                                <br>
+                                <p class = "product-price">{{5000| currency:"INR":"symbol"}}</p>
+                                <p class = "product-price"> {{product.price | currency:"INR":"symbol"}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class = "product-collection">
+    <div class = "container">
+        <div class = "product-collection-wrapper">
+            <!-- product col left -->
+            <div class = "product-col-left flex">
+                <div class = "product-col-content">
+                    <h2 class = "sm-title">men's shoes </h2>
+                    <h2 class = "md-title">men's collection </h2>
+                    <p class = "text-light">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae consequatur facilis eligendi quibusdam voluptatibus exercitationem autem voluptatum, beatae architecto odit, quisquam repellat. Deleniti, architecto ab.</p>
+                    <button type = "button" class = "btn-dark">Shop now</button>
+                </div>
+            </div>
+
+            <!-- product col right -->
+            <div class = "product-col-right">
+                <div class = "product-col-r-top flex">
+                    <div class = "product-col-content">
+                        <h2 class = "sm-title">women's dresses </h2>
+                        <h2 class = "md-title">women's collection </h2>
+                        <p class = "text-light">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae consequatur facilis eligendi quibusdam voluptatibus exercitationem autem voluptatum, beatae architecto odit, quisquam repellat. Deleniti, architecto ab.</p>
+                        <button type = "button" class = "btn-dark">Shop now</button>
+                    </div>
+                </div>
+
+                <div class = "product-col-r-bottom">
+                    <!-- left -->
+                    <div class = "flex">
+                        <div class = "product-col-content">
+                            <h2 class = "sm-title">summer sale </h2>
+                            <h2 class = "md-title">Extra 50% Off </h2>
+                            <p class = "text-light">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae consequatur facilis eligendi quibusdam voluptatibus exercitationem autem voluptatum, beatae architecto odit, quisquam repellat. Deleniti, architecto ab.</p>
+                            <button type = "button" class = "btn-dark">Shop now</button>
+                        </div>
+                    </div>
+                    <!-- right -->
+                    <div class = "flex">
+                        <div class = "product-col-content">
+                            <h2 class = "sm-title">shoes </h2>
+                            <h2 class = "md-title">best sellers </h2>
+                            <p class = "text-light">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae consequatur facilis eligendi quibusdam voluptatibus exercitationem autem voluptatum, beatae architecto odit, quisquam repellat. Deleniti, architecto ab.</p>
+                            <button type = "button" class = "btn-dark">Shop now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        

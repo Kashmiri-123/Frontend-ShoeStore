@@ -1,0 +1,148 @@
+<div class="container my-5">
+    <div class="card">
+        <div class="card-title">
+            <h2 class="text-center">My Address List</h2>
+            <hr>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-sm-12">
+                <div class="card-body p-3">
+                    <div class="card">
+                        <table class="table table-spriped">
+                            <thead>
+                                <tr>
+                                    <td>Street</td>
+                                    <td>House No</td>
+                                    <td>State</td>
+                                    <td>Pincode</td>
+                                    <td>Country</td>
+                                    <td align="right">Actions</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <tr *ngFor="let address of allAddress; let i = index">
+                                        <td> {{address?.street}}</td> 
+                                        <td> {{address?.houseNumber}}</td> 
+                                        <td> {{address?.State}}</td> 
+                                        <td> {{address?.pinCode}}</td> 
+                                        <td> {{address?.Country}}</td> 
+                                        <td align="right">
+                                            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                                <button 
+                                                    type="button" 
+                                                    class="btn btn-outline-info"
+                                                    (click) = "loadData(i)"
+                                                >
+                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                </button>
+                                                <button 
+                                                    type="button" class="btn btn-outline-danger" 
+                                                    (click)="deleteAddress(address?.id)"
+                                                >
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 cols-sm-12">
+                <div class="card my-3">
+                    <div class="card-title">
+                        <h3 class="text-center">Add Adddress</h3>
+                        <hr>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-spriped">
+                            <tbody>
+                                    <tr>
+                                        <td>Street</td>
+                                        <td>
+                                            <input 
+                                                type="text" 
+                                                class="form-control"
+                                                [(ngModel)]="street"
+                                                value="street"
+                                            >
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>HouseNumber</td>
+                                        <td>
+                                            <input 
+                                                type="text" 
+                                                class="form-control"
+                                                [(ngModel)]="houseNumber"
+                                                value="houseNumber"
+                                            >
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>State</td>
+                                        <td>
+                                            <input 
+                                                type="text" 
+                                                class="form-control"
+                                                [(ngModel)]="State"
+                                                value="State"
+                                            >
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>PinCode</td>
+                                        <td>
+                                            <input 
+                                                type="text" 
+                                                class="form-control"
+                                                [(ngModel)]="pinCode"
+                                                value="pinCode"
+                                            >
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>City</td>
+                                        <td>
+                                            <input 
+                                                type="text" 
+                                                class="form-control"
+                                                [(ngModel)]="City"
+                                                value="City"
+                                            >
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Country</td>
+                                        <td>
+                                            <input 
+                                                type="text" 
+                                                class="form-control"
+                                                [(ngModel)]="Country"
+                                                value="Country"
+                                            >
+                                        </td>
+                                    </tr>
+                            </tbody>
+                        </table>
+                        <div class="d-grid gap-2">
+                            <button 
+                                class="btn btn-primary" 
+                                type="button"
+                                (click)="submitData()"
+                            >
+                            <span *ngIf="!isUpdate">
+                                Add Address
+                            </span>
+                            <span *ngIf="isUpdate">
+                                Update Address
+                            </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

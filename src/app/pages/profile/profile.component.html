@@ -1,0 +1,96 @@
+<section style="background-color: #eee;">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col">
+          <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+            <ol class="breadcrumb mb-0">
+              <li class="breadcrumb-item">Home</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card mb-4">
+            <div class="card-body text-center">
+              <img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-chat/ava3.png" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+              <h5 class="my-3"> {{user?.name}} </h5>
+              <p class="text-muted mb-1">
+                <span class="badge bg-success">{{user?.role}}</span>
+              </p>
+              <p class="text-muted mb-4">India </p>
+              <div class="d-flex justify-content-center mb-2">
+                <button type="button" class="btn btn-primary">Orders</button>
+                <button type="button" class="btn btn-outline-info ms-1">Wishlist</button>
+              </div>
+            </div>
+            <br>
+            <br>
+          </div>  
+        </div>
+        <div class="col-lg-8">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">User ID</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">  {{user?.id}} </p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Email</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0"> {{user?.email}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Mobile</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0"> {{user?.phoneNumber}} </p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Work</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">(098) 765-4321</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Address</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">
+                      <a
+                        href="/address" 
+                        class="btn btn-info">
+                        <i class="fa fa-location"></i>
+                        <span class="text-white">Check Out my address</span>
+                      </a>
+                  </p>
+                </div>
+              </div>
+              <hr>
+
+            </div>
+          </div>
+          <div class="d-grid gap-2">
+                <a href="/products" class="btn btn-primary btn-lg my-2" type="button">Shop Now !!</a>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
