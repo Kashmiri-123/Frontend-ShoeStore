@@ -24,6 +24,7 @@ export class OrdersComponent implements OnInit {
   allOrders:any = []
   loadAllOrdersByUserId(){
     this.orderService.getAllOrderByUserId().subscribe(orders => {
+      console.log("Orders... "+ JSON.stringify(orders))
       orders.map((order: { [x: string]: any; }) => {
           let orderDetails = {
             productImage : order["Product.image"],

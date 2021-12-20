@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/service/auth/auth.service';
+import {FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -13,21 +14,46 @@ export class SignupComponent implements OnInit {
   constructor(
      private router: Router,
      private authService: AuthService,
-     private toastr: ToastrService
+     private toastr: ToastrService,
+     private formBuilder: FormBuilder
      ) { }
 
+  // name: string = "";
+  // email: string = "";
+  // password: string = "";
+  // phoneNumber: any = "";
+
+  registerForm: any;
+  submitted = false;
+
   ngOnInit(): void {
+    this.registerForm = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.min(5)]],
+      phoneNumber: ['', [Validators.required]]
+    })
   }
 
-  name: string = "";
-  email: string = "";
-  password: string = "";
-  phoneNumber: any = "";
+  get formInputData () {
+    return this.registerForm.controls;
+  }
 
 
   handleregister = () => {
-    this.authService
-      .registerService({name: this.name, email: this.email, password: this.password, phoneNumber: this.phoneNumber})
+    console.log(this.formInputData.name.value)
+    this.submitted = true;
+    if(this.formInputData.invalid){
+      return;
+    }
+    else{
+      this.authService
+      .registerService({
+        name: this.formInputData.name.value,
+        email: this.formInputData.email.value, 
+        password: this.formInputData.password.value, 
+        phoneNumber: this.formInputData.phoneNumber.value
+      })
       .subscribe(user => {
         if(user){
           this.authService.setUserOnLocalStorage(user);
@@ -40,6 +66,7 @@ export class SignupComponent implements OnInit {
       }, error => {
         this.toastr.error(error.error)
       })
+    }
   }
 
 }

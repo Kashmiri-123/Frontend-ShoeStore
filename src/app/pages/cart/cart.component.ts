@@ -48,7 +48,7 @@ export class CartComponent implements OnInit {
   loadAllCartProduct = () => {
     this.cartService.getCartProductByUserId().subscribe((products) => {
       this.cartProducts = products;
-      // console.log(products);
+      console.log("........", products);
     }, error => console.log(error));
   }
 

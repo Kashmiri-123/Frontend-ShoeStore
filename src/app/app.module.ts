@@ -25,7 +25,7 @@ import { ManageOrdersComponent } from './pages/admin/manage-orders/manage-orders
 import { AddProductComponent } from './pages/admin/manage-products/add-product/add-product.component';
 import { UpdateProductComponent } from './pages/admin/manage-products/update-product/update-product.component';
 import { UserUpdateComponent } from './pages/admin/users/user-update/user-update.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddressComponent } from './pages/address/address.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
@@ -66,6 +66,7 @@ import { ToastrModule } from 'ngx-toastr';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
   ],

@@ -24,7 +24,7 @@ export class AuthService {
     return this.http.post(API + "/signup", body, {'headers': header})
   }
 
-  setUserOnLocalStorage= (user:any) => {
+  setUserOnLocalStorage = (user:any) => {
     const currentUser = localStorage.getItem("user");
     if(!currentUser){
       localStorage.setItem("user", JSON.stringify(user))
@@ -37,7 +37,7 @@ export class AuthService {
     }
   }
 
-  isAuthenticated= () : any => {
+  isAuthenticated = () : any => {
       const user = localStorage.getItem("user")
       if(user){
         return JSON.parse(user) 

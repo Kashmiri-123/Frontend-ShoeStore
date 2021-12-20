@@ -18,7 +18,8 @@ export class ProductComponent implements OnInit {
 
   id:any = "";
   ngOnInit(): void {
-    this.id = this.activateRouter.snapshot.paramMap.get("id");
+    this.id = this.activateRouter.snapshot.paramMap.get("id");//path parameter
+    // this.id = this.activateRouter.snapshot.queryParamMap.get("id");//for query parameter
     this.loadProduct();
     setTimeout(() => {
       this.loadRelatedProducts(this.product?.category);
