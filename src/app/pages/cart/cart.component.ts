@@ -125,7 +125,7 @@ export class CartComponent implements OnInit {
         this.orderService.placeOrder(order).subscribe(responseOrder => {
             if(responseOrder){
                 console.log("RESPONSE ORDER : ", responseOrder);
-                window.location.reload();
+                // window.location.reload();
                 // this.orderId = responseOrder;
                 this.cartService.removeProductFromCart(cartProduct?.id).subscribe(deletedProduct => {
                   if(deletedProduct){
@@ -144,9 +144,9 @@ export class CartComponent implements OnInit {
         })
     })
     
-    // setTimeout(() => {
-    //   window.location.reload();
-    // }, 1000);
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   }
 
   nagivateToAddress = () => {
