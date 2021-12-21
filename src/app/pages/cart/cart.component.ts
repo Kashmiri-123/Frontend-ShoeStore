@@ -6,7 +6,7 @@ import { AuthService } from 'src/app/service/auth/auth.service';
 import { CartService } from 'src/app/service/cart/cart.service';
 import { OrderService } from 'src/app/service/order/order.service';
 
-declare var Razorpay: any;
+// declare var Razorpay: any;
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -125,8 +125,8 @@ export class CartComponent implements OnInit {
         this.orderService.placeOrder(order).subscribe(responseOrder => {
             if(responseOrder){
                 console.log("RESPONSE ORDER : ", responseOrder);
+                window.location.reload();
                 // this.orderId = responseOrder;
-                this.makePayment();
                 this.cartService.removeProductFromCart(cartProduct?.id).subscribe(deletedProduct => {
                   if(deletedProduct){
                       console.log("Product deleted from cart", cartProduct);
@@ -152,29 +152,5 @@ export class CartComponent implements OnInit {
   nagivateToAddress = () => {
     this.router.navigate(['/address']);
   }
-
-  makePayment = () => {
-    var options = {
-      "key": "rzp_test_9lmHAgAQ3qqVM7",
-      "amount": this.totalPrice * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-      "currency": "INR",
-      "name": "Products",
-      "description": "Test Transaction",
-      "image": "https://example.com/your_logo",
-      // "order_id": this.orderId, //This is a sample Order ID. Pass the `id` obtained in the previous step
-      "handler": function (response: any){
-          console.log("Razorpay response " + response)
-      }, 
-    }
-    var rzp1 = new Razorpay(options);
-    rzp1.on('payment.failed', function (response : any) {
-      console.log("Razor error " + response)
-      });
-    rzp1.open();
-    this.toastr.success("Order Placed !!")
-    setTimeout(() => {
-      window.location.reload();
-    }, 50000);
-}
 
 }
